@@ -1,0 +1,11 @@
+# Archivos que crea el visor local de Structurizr
+docs/c4/.structurizr/
+docs/c4/workspace.json
+
+# Variables de entorno locales
+.env
+
+# IDE y sistema operativo
+.idea/
+.vscode/
+.DS_Store
