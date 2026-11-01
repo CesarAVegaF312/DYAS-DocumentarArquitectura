@@ -1,0 +1,18 @@
+# Visor local de Structurizr: muestra los diagramas de docs/c4/workspace.dsl en el navegador
+# y los actualiza al recargar la página después de guardar el archivo.
+#   docker compose up -d        luego abra http://localhost:8080
+#   docker compose down
+name: documentar-arquitectura
+
+services:
+  visor:
+    image: structurizr/structurizr:2026.09.19
+    command: local
+    # El visor escribe archivos de trabajo en docs/c4/ (están en .gitignore).
+    # En Linux, si aparece "Data directory ... is not writable", defina USUARIO_ID y GRUPO_ID
+    # con los valores de "id -u" e "id -g" en un archivo .env.
+    user: "${USUARIO_ID:-1000}:${GRUPO_ID:-1000}"
+    ports:
+      - "${VISOR_PORT:-8080}:8080"
+    volumes:
+      - ./docs/c4:/usr/local/structurizr

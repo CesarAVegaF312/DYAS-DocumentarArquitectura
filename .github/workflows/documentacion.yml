@@ -1,0 +1,31 @@
+# Verifica la documentación de la arquitectura en cada push y en cada Pull Request:
+# el modelo C4 es válido, los diagramas exportados están al día y los ADR tienen el formato acordado.
+name: Documentación
+
+on:
+  push:
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  documentacion:
+    name: Modelo C4, diagramas y ADR
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+
+      - name: Descargar la imagen de Structurizr
+        run: docker pull structurizr/structurizr:2026.09.19
+
+      - name: Validar el modelo C4
+        run: scripts/validar.sh
+
+      - name: Verificar que los diagramas exportados están al día
+        run: scripts/verificar-diagramas.sh
+
+      - name: Verificar el formato de los ADR
+        run: scripts/verificar-adr.sh

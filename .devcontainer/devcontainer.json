@@ -1,0 +1,24 @@
+{
+  "name": "DYAS - DocumentarArquitectura",
+  "image": "mcr.microsoft.com/devcontainers/base:debian",
+  "features": {
+    "ghcr.io/devcontainers/features/docker-in-docker:4": {}
+  },
+  "forwardPorts": [
+    8080
+  ],
+  "portsAttributes": {
+    "8080": {
+      "label": "Visor de Structurizr"
+    }
+  },
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "ciarant.vscode-structurizr",
+        "bierner.markdown-mermaid",
+        "ms-azuretools.vscode-containers"
+      ]
+    }
+  }
+}
